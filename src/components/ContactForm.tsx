@@ -80,7 +80,7 @@ export const ContactForm: FC<ContactFormProps> = ({
 
     return (
         <>
-        <h1 className='mb-3' >{titleContactForm}</h1>
+        <h2 className='mb-3 text-dark' >{titleContactForm}</h2>
         {/* <form onSubmit={onFormSubmit} ref={formRef}>
             <input 
                 type="text" 
@@ -137,7 +137,7 @@ export const ContactForm: FC<ContactFormProps> = ({
                 </FloatingLabel>
                 {
                     showNameExistsError ? 
-                    <Form.Text style={{color:'#3B71CA', fontWeight: 'bold', fontSize: '16px'}}>
+                    <Form.Text className="text-danger" style={{ fontSize: '17px'}}>
                         {nameExistsMessage}
                     </Form.Text>
                     : null

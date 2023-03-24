@@ -2,7 +2,7 @@ import {FC, useState, useEffect} from 'react';
 import './App.css';
 import { ContactForm } from './components/ContactForm';
 import { IContact, apiFetchAllContacts, apiAddContact, apiDeleteContact, apiUpdateContact } from './data/contacts';
-import Button from 'react-bootstrap/Button';
+import {Button} from 'react-bootstrap';
 import { ContactsList } from './components/ContactsList';
 import { getContacts } from './data/contacts/storage';
 
@@ -69,7 +69,10 @@ const App: FC = () => {
   };
 
   return (
-    <div className="container">
+    <>
+      <h1 className="heading text-light bg-secondary bg-gradient text-white">Contact Manager</h1>
+
+      <div className="container">
       {
         !showForm 
         && 
@@ -103,6 +106,7 @@ const App: FC = () => {
         />
       }
   </div>
+  </>
   );
 }
 

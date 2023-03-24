@@ -1,5 +1,14 @@
+.heading {
+    text-align: center; 
+    width: 100%;
+    padding: 40px ;
+    /* background: #6699FF;
+    color: #fff;  */
+}
+
 .container {
-margin-top: 50px;
+    width: 800px;
+    margin-top: 30px;
 }
 
 .formContainer {
@@ -9,6 +18,8 @@ margin-top: 50px;
     width: 500px;
 }
 
+
+/* 
 label {
     color: 'green';
     display: flex;
@@ -19,7 +30,7 @@ label {
 
 input {
     width: 70%
-}
+} */
 
 .submit {
     display: flex;

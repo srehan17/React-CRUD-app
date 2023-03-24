@@ -15,6 +15,8 @@ export const ContactsList: FC<ContactListProps> = ({
     })  => {
     return (
         <div >
+            {(contacts.length === 0) ?
+            null :                
             <Table>
                 <thead>
                     <tr className="tableHeadings">
@@ -42,7 +44,7 @@ export const ContactsList: FC<ContactListProps> = ({
                         </tr>
                     ))}
                 </tbody>
-            </Table>
-        </div>
+            </Table>}
+        </div> 
     );
 }
