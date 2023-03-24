@@ -41,7 +41,7 @@ const App: FC = () => {
     editingContact.name = ""
     editingContact.phone = ""
     editingContact.email = ""
-    editingContact.age = 0
+    editingContact.age = undefined
     // setEditingContact(initialState)
     setShowForm(true);
   }
