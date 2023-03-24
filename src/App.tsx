@@ -13,12 +13,10 @@ export const initialState = {
 const App: FC = () => {
 
   const [contacts, setContacts] = useState<IContact[]>(getContacts);
-
-  // const [currentFormContact, setCurrentFormContact] = useState<IContact>(initialState);
-  // const [currentFormContact, setCurrentFormContact] = useState<IContact | null>(null);
   const [editingContact, setEditingContact] = useState<IContact>(initialState);
-
   const [showForm, setShowForm] = useState(false);
+  const [titleContactForm, setTitleContactForm] = useState("");
+  const [submitButtonName, setSubmitButtonName] = useState("");
 
   const reloadContacts = () => {
     apiFetchAllContacts()
@@ -38,9 +36,15 @@ const App: FC = () => {
   }
 
   const handleAddContact = () => {
+    setTitleContactForm("Add Contact");
+    editingContact.id = ""
+    editingContact.name = ""
+    editingContact.phone = ""
+    editingContact.email = ""
+    editingContact.age = 0
+    // setEditingContact(initialState)
     setShowForm(true);
   }
-
 
   useEffect(() => {
     console.log("Contacts", contacts);
@@ -48,6 +52,8 @@ const App: FC = () => {
 
 
   const onEditContact = (contact: IContact) => {
+    setTitleContactForm("Edit Contact");
+    setSubmitButtonName("Update");
     editingContact.id = contact.id;
     editingContact.name = contact.name;
     editingContact.phone = contact.phone;
@@ -79,9 +85,8 @@ const App: FC = () => {
         showForm 
         &&
         <ContactForm 
-          onContactChanged={onContactChanged}
-          // currentFormContact={currentFormContact}  
-          // setCurrentFormContact={setCurrentFormContact}     
+          titleContactForm={titleContactForm}
+          onContactChanged={onContactChanged}    
           editingContact={editingContact}
           contacts={contacts}
           showForm={showForm}

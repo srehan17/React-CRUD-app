@@ -3,10 +3,10 @@ import { IContact, apiAddContact, apiFetchAllContacts, apiUpdateContact } from '
 import { generateUUID } from "../util/guid";
 import {Form, Button, FloatingLabel } from 'react-bootstrap';
 import { initialState } from '../App';
+
 interface ContactFormProps {
+    titleContactForm: string;
     contacts: IContact[];
-    // currentFormContact: IContact | null;
-    // setCurrentFormContact: React.Dispatch<React.SetStateAction<IContact | null>>;
     onContactChanged: () => void;
     editingContact: IContact;
     showForm: boolean;
@@ -14,9 +14,8 @@ interface ContactFormProps {
 }
 
 export const ContactForm: FC<ContactFormProps> = ({
+        titleContactForm,
         contacts, 
-        // currentFormContact, 
-        // setCurrentFormContact,
         editingContact,
         onContactChanged,
         showForm,
@@ -24,12 +23,12 @@ export const ContactForm: FC<ContactFormProps> = ({
     })  => {
     
     const [contact, setContact] = useState<IContact>(initialState);
-    
+    const [showNameExistsError, setShowNameExistsError] = useState(false);
+
+    const nameExistsMessage = "This name exists, please enter a different name.";
+
     const formRef = useRef<HTMLFormElement>(null)
     const nameRef = useRef<HTMLInputElement>(null)
-    if (nameRef.current !== null) {
-        nameRef.current.value = contact.name
-    }
     const ageRef = useRef<HTMLInputElement>(null)
     const phoneRef = useRef<HTMLInputElement>(null)
     const emailRef = useRef<HTMLInputElement>(null)
@@ -41,12 +40,14 @@ export const ContactForm: FC<ContactFormProps> = ({
     
     const onFormSubmit =  (e: React.FormEvent) => {
         e.preventDefault(); 
-        const existingByName = contacts.find(x => x.name.toLowerCase() === contact.name.toLowerCase());
-        if (existingByName){
-            console.log("Name exists");
-            return;
-        }
+        
         if (contact.id === "") {
+            const existingByName = contacts.find(x => x.name.toLowerCase() === contact.name.toLowerCase());
+            if (existingByName){
+                console.log("Name exists");
+                setShowNameExistsError(true);
+                return
+            }
             contact.id = generateUUID();
             apiAddContact(contact).then(()=>onContactChanged())
         }
@@ -55,18 +56,32 @@ export const ContactForm: FC<ContactFormProps> = ({
             apiUpdateContact(contact).then(()=>onContactChanged());
         }
         setShowForm(false);
-            console.log(showForm)
         
-        // setContact(initialState);
+        setContact(initialState);
+        
         if (formRef.current !== null) {
             formRef.current.reset();
-            
         }
+        if (nameRef.current !== null) {
+            nameRef.current.value = ""
+        }
+        if (emailRef.current !== null) {
+            emailRef.current.value = ""
+        }
+        if (ageRef.current !== null) {
+            ageRef.current.value = ""
+        }
+        if (phoneRef.current !== null) {
+            phoneRef.current.value = ""
+        }
+
         // console.log(JSON.stringify(formContact, null, 3));
       }
 
     return (
-        <form onSubmit={onFormSubmit} ref={formRef}>
+        <>
+        <h1 className='mb-3' >{titleContactForm}</h1>
+        {/* <form onSubmit={onFormSubmit} ref={formRef}>
             <input 
                 type="text" 
                 name="name" 
@@ -103,66 +118,77 @@ export const ContactForm: FC<ContactFormProps> = ({
             <Button variant="dark" type="submit">
                 Submit
             </Button>
-        </form>
-        // <Form className='formContainer' id='form' 
-        //     onSubmit={onFormSubmitted} 
-        //     >
-        //     <Form.Group className="mb-3">
-        //         <FloatingLabel
-        //             controlId="name"
-        //             label="Name"
-        //             className="mb-3"
-        //         >
-        //         <Form.Control 
-        //             type="text" 
-        //             name="name" 
-        //             value={editContact.name} 
-        //             onChange={handleChange} 
-        //             required/>
-        //         </FloatingLabel>
-        //     </Form.Group>
-            // <Form.Group>
-            //     <FloatingLabel
-            //         controlId="email"
-            //         label="Email"
-            //         className="mb-3"
-            //     >
-            //     <Form.Control 
-            //         type="text" 
-            //         name="email" 
-            //         value={editContact.email} 
-            //         onChange={handleChange} />
-            //     </FloatingLabel>
-            // </Form.Group>
-            // <Form.Group>
-            //     <FloatingLabel
-            //         controlId="phone"
-            //         label="Phone"
-            //         className="mb-3"
-            //     >
-            //     <Form.Control 
-            //         type="text" 
-            //         name="phone" 
-            //         value={editContact.phone} 
-            //         onChange={handleChange} />
-            //     </FloatingLabel>
-            // </Form.Group>
-            // <Form.Group>
-            //     <FloatingLabel
-            //         controlId="age"
-            //         label="Age"
-            //         className="mb-3"
-            //     >
-            //     <Form.Control 
-            //         type="number" 
-            //         name="age" 
-            //         value={editContact.age} 
-            //         onChange={handleChange}/>
-            //     </FloatingLabel>
-            // </Form.Group>
-        //     <Button variant="dark" type="submit">
-        //         Submit
-        //     </Button>
-        // </Form> 
+        </form> */}
+         <Form className='formContainer' id='form' 
+            onSubmit={onFormSubmit} ref={formRef}>
+            <Form.Group className="mb-3">
+                <FloatingLabel
+                    controlId="name"
+                    label="Name"
+                    className="mb-3"
+                >
+                <Form.Control 
+                    type="text" 
+                    name="name" 
+                    value= {contact.name} 
+                    ref={nameRef}
+                    onChange={handleChange} 
+                    required/>
+                </FloatingLabel>
+                {
+                    showNameExistsError ? 
+                    <Form.Text style={{color:'#3B71CA', fontWeight: 'bold', fontSize: '16px'}}>
+                        {nameExistsMessage}
+                    </Form.Text>
+                    : null
+                }
+            </Form.Group>
+            <Form.Group>
+                <FloatingLabel
+                    controlId="email"
+                    label="Email"
+                    className="mb-3"
+                >
+                <Form.Control 
+                    type="text" 
+                    name="email" 
+                    value= {contact.email}   
+                    ref={emailRef}                  
+                    onChange={handleChange} />
+                </FloatingLabel>
+            </Form.Group>
+            <Form.Group>
+                <FloatingLabel
+                    controlId="phone"
+                    label="Phone"
+                    className="mb-3"
+                >
+                <Form.Control 
+                    type="text" 
+                    name="phone" 
+                    value= {contact.phone} 
+                    ref={phoneRef}
+                    onChange={handleChange} />
+                </FloatingLabel>
+            </Form.Group>
+            <Form.Group>
+                <FloatingLabel
+                    controlId="age"
+                    label="Age"
+                    className="mb-3"
+                >
+                <Form.Control 
+                    type="number" 
+                    name="age" 
+                    value= {contact.age} 
+                    ref={ageRef}
+                    onChange={handleChange}/>
+                </FloatingLabel>
+            </Form.Group>
+            <Button variant="primary" type="submit">
+                Submit
+            </Button>
+        </Form> 
+        </>
     );
 }
