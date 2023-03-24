@@ -1,0 +1,35 @@
+App
+	state: contacts
+	state: currentFormContact
+
+	method: fetchContacts
+		call api to get all contact and set state
+	
+	method: onAddContactButtonPress
+		set state currentFormContact = new contact
+	
+	method: onEditContactButtonPress(contact: IContact)
+			set state currentFormContact = contact
+	
+	method: onContactsChanged   
+		call fetchContacts
+
+	useEffect (init load)
+		call fetchContacts
+
+
+	ContactForm
+		* contact or undefined
+		* onFormSubmitted
+
+		submit
+			check if id exists then call update
+			else call add api
+			if success call onContactsChanged
+
+
+	ContactList
+		* contacts
+		* onEditContactButtonPress
+
+		if edit button press call onEditContactButtonPress

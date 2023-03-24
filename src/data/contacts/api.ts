@@ -1,7 +1,7 @@
 import {IContact} from "./types";
 import {getContacts, saveContacts} from "./storage";
 
-const FAKE_NETWORK_DELAY = 750;
+const FAKE_NETWORK_DELAY = 0;
 
 /**
  * Fetch all existing contacts from the remote storage.
