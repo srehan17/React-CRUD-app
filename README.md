@@ -1,3 +1,7 @@
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/28539842/227636443-9e82a165-bc07-4f4a-a53d-6d102934871d.gif)
+
+
+
 # Brew Ninja TypeScript/React Developer / Engineer - Take Home Test
 
 This project is for candidates applying to a front-end engineering position at Brew Ninja. The goal of this test is to assess your knowledge of both *TypeScript* and *React*, and give us talking points for the interview (if we proceed to that step).
