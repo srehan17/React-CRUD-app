@@ -38,7 +38,6 @@ const App: FC = () => {
   }
 
   const handleAddContact = () => {
-    // console.log(currentFormContact)
     setShowForm(true);
   }
 
@@ -49,15 +48,12 @@ const App: FC = () => {
 
 
   const onEditContact = (contact: IContact) => {
-      editingContact.id = contact.id;
-      editingContact.name = contact.name;
-      editingContact.phone = contact.phone;
-      editingContact.email = contact.email;
-      editingContact.age = contact.age;
-
-      apiUpdateContact(editingContact).then(()=> reloadContacts())
-      console.log("Edit clicked", contact)
-      console.log("Editing contact", editingContact)
+    editingContact.id = contact.id;
+    editingContact.name = contact.name;
+    editingContact.phone = contact.phone;
+    editingContact.email = contact.email;
+    editingContact.age = contact.age;
+    apiUpdateContact(editingContact).then(()=> reloadContacts())
     setShowForm(true);
   };
 
@@ -68,9 +64,9 @@ const App: FC = () => {
 
   return (
     <div className="container">
-      {/* {
+      {
         !showForm 
-        &&  */}
+        && 
         <Button 
           variant="primary" 
           onClick={handleAddContact}
@@ -78,27 +74,29 @@ const App: FC = () => {
         >
           Add Contact
         </Button>
-      {/* }     
-      { */}
-        {/* showForm 
-        && */}
+      }
+      {
+        showForm 
+        &&
         <ContactForm 
           onContactChanged={onContactChanged}
           // currentFormContact={currentFormContact}  
           // setCurrentFormContact={setCurrentFormContact}     
           editingContact={editingContact}
           contacts={contacts}
+          showForm={showForm}
+          setShowForm={setShowForm}
         />
-      {/* } */}
-      {/* {
+      }
+      {
         !showForm 
-        &&  */}
+        &&
         <ContactsList 
           contacts={contacts} 
           onEditContact={onEditContact} 
           onDeleteContact={onDeleteContact}
         />
-      {/* }     */}
+      }
   </div>
   );
 }

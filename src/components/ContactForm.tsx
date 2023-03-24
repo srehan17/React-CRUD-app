@@ -9,6 +9,8 @@ interface ContactFormProps {
     // setCurrentFormContact: React.Dispatch<React.SetStateAction<IContact | null>>;
     onContactChanged: () => void;
     editingContact: IContact;
+    showForm: boolean;
+    setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const ContactForm: FC<ContactFormProps> = ({
@@ -17,6 +19,8 @@ export const ContactForm: FC<ContactFormProps> = ({
         // setCurrentFormContact,
         editingContact,
         onContactChanged,
+        showForm,
+        setShowForm
     })  => {
     
     const [contact, setContact] = useState<IContact>(initialState);
@@ -50,10 +54,13 @@ export const ContactForm: FC<ContactFormProps> = ({
             setContact(editingContact);            
             apiUpdateContact(contact).then(()=>onContactChanged());
         }
+        setShowForm(false);
+            console.log(showForm)
         
         // setContact(initialState);
         if (formRef.current !== null) {
             formRef.current.reset();
+            
         }
         // console.log(JSON.stringify(formContact, null, 3));
       }
