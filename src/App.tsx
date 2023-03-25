@@ -1,10 +1,9 @@
-import {FC, useState, useEffect} from 'react';
+import { FC, useState, useEffect } from 'react';
 import './App.css';
 import { ContactForm } from './components/ContactForm';
-import { IContact, apiFetchAllContacts, apiAddContact, apiDeleteContact, apiUpdateContact } from './data/contacts';
-import {Button} from 'react-bootstrap';
+import { IContact, apiFetchAllContacts, apiDeleteContact, apiUpdateContact } from './data/contacts';
+import { Button } from 'react-bootstrap';
 import { ContactsList } from './components/ContactsList';
-import { getContacts } from './data/contacts/storage';
 
 export const initialState = {
   id:"", name:"", phone: "", email: "", age: 0
@@ -12,7 +11,7 @@ export const initialState = {
 
 const App: FC = () => {
 
-  const [contacts, setContacts] = useState<IContact[]>(getContacts);
+  const [contacts, setContacts] = useState<IContact[]>([]);
   const [editingContact, setEditingContact] = useState<IContact>(initialState);
   const [showForm, setShowForm] = useState(false);
   const [titleContactForm, setTitleContactForm] = useState("");

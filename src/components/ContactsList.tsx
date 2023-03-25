@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import {IContact} from "../data/contacts";
+import { IContact } from "../data/contacts";
 import { Button, Table } from "react-bootstrap";
 
 export interface ContactListProps{

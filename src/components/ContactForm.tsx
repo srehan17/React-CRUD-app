@@ -1,7 +1,7 @@
-import React, {FC, useState, useRef, useEffect} from 'react';
-import { IContact, apiAddContact, apiFetchAllContacts, apiUpdateContact } from '../data/contacts';
+import { FC, useState, useRef } from 'react';
+import { IContact, apiAddContact, apiUpdateContact } from '../data/contacts';
 import { generateUUID } from "../util/guid";
-import {Form, Button, FloatingLabel } from 'react-bootstrap';
+import { Form, Button, FloatingLabel } from 'react-bootstrap';
 import { initialState } from '../App';
 
 interface ContactFormProps {
@@ -74,51 +74,12 @@ export const ContactForm: FC<ContactFormProps> = ({
         if (phoneRef.current !== null) {
             phoneRef.current.value = ""
         }
-
-        // console.log(JSON.stringify(formContact, null, 3));
       }
 
     return (
         <>
         <h2 className='mb-3 text-dark' >{titleContactForm}</h2>
-        {/* <form onSubmit={onFormSubmit} ref={formRef}>
-            <input 
-                type="text" 
-                name="name" 
-                value= {contact.name} 
-                onChange={handleChange}
-                placeholder="Name" 
-                required
-                ref={nameRef}
-                />
-            <input
-                type="text" 
-                name="email" 
-                value={contact.email} 
-                onChange={handleChange} 
-                placeholder="Email"
-                ref={emailRef}
-            />
-            <input
-                type="text" 
-                name="phone" 
-                value={contact.phone} 
-                onChange={handleChange} 
-                placeholder="Phone"
-                ref={phoneRef}
-            />
-            <input
-                type="number" 
-                name="age" 
-                value={contact.age} 
-                onChange={handleChange}
-                placeholder="Age"
-                ref={ageRef}
-            />
-            <Button variant="dark" type="submit">
-                Submit
-            </Button>
-        </form> */}
+       
          <Form className='formContainer' id='form' 
             onSubmit={onFormSubmit} ref={formRef}>
             <Form.Group className="mb-3">
