@@ -7,6 +7,7 @@ Contact Manager App
 - App makes use of the following APIs: apiAddContact, apiDeleteContact, apiFetchAllContacts, apiUpdateContact
 
 > npm start
+
 Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 <img width="1135" alt="Screen Shot 2023-03-24 at 4 58 57 PM" src="https://user-images.githubusercontent.com/28539842/227639778-ba93d755-c7d9-4202-908d-bc10bc8c8986.png">
