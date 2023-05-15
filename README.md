@@ -1,4 +1,4 @@
-Contact Manager App
+**Contact Manager App
 
 - Users can add new contacts.
 - Home page displays a list of contacts with their details ordered by Name.
@@ -9,6 +9,7 @@ Contact Manager App
 > npm start
 
 Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
 
 <img width="1135" alt="Screen Shot 2023-03-24 at 4 58 57 PM" src="https://user-images.githubusercontent.com/28539842/227639778-ba93d755-c7d9-4202-908d-bc10bc8c8986.png">
 <img width="1135" alt="Screen Shot 2023-03-24 at 4 59 40 PM" src="https://user-images.githubusercontent.com/28539842/227639821-a67d7977-b5fb-453b-8b54-a61dd8613ec0.png">
