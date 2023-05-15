@@ -1,4 +1,4 @@
-**Contact Manager App
+**Contact Manager App**
 
 - Users can add new contacts.
 - Home page displays a list of contacts with their details ordered by Name.
